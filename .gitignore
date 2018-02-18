@@ -21,3 +21,4 @@
 # .tfvars files
 *.tfvars
 
+ssh-keys/*
