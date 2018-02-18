@@ -54,3 +54,11 @@ variable "SECURITY_GROUP_ACCESS" {
   type        = "list"
   description = "Access IPs. Need access for EC2 and ELB"
 }
+
+variable "SSL_CERT_FOR_ELB" {
+  default = "SSL CERT"
+}
+
+variable "SSL_KEY_FOR_ELB" {
+  default = "SSL KEY"
+}
