@@ -36,6 +36,11 @@ variable "INSTANCE_DEVICE_NAME" {
   description = "Attach EBS volume"
 }
 
+variable "DEFAULT_EC2_SIZE" {
+  description = "Size of root volume for Jenkins EC2"
+  default     = "8"
+}
+
 variable "EBS_VOLUME_SIZE" {
   description = "EBS volume size"
   default     = "50"
@@ -43,4 +48,9 @@ variable "EBS_VOLUME_SIZE" {
 
 variable "NOTIFICATION_ENDPOINT" {
   description = "SNS email"
+}
+
+variable "SECURITY_GROUP_ACCESS" {
+  type        = "list"
+  description = "Access IPs. Need access for EC2 and ELB"
 }
