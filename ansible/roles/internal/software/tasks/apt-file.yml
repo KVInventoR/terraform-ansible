@@ -1,0 +1,36 @@
+# tasks file for apt-file
+---
+# https://github.com/Oefenweb/ansible-apt-file
+
+- name: install
+  apt:
+    name: "{{ item }}"
+    state: "{{ apt_install_state | default('latest') }}"
+  register: result
+  with_items: "{{ apt_file_dependencies }}"
+  tags:
+    - configuration
+    - apt-file
+    - apt-file-install
+
+- name: run apt-file update (once)
+  shell: test -x /usr/bin/apt-file && /usr/bin/apt-file update
+  when: result | changed
+  tags:
+    - configuration
+    - apt-file
+    - apt-file-update
+
+- name: add (daily) cron task
+  become: True
+  cron:
+    name: "apt-file update"
+    job: "test -x /usr/bin/apt-file && /usr/bin/apt-file update"
+    special_time: daily
+    cron_file: apt-file
+    user: root
+  when: apt_file_update_daily
+  tags:
+    - configuration
+    - apt-file
+    - apt-file-cron-d

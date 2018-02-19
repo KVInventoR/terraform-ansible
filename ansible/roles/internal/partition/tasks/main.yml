@@ -1,0 +1,44 @@
+---
+# Role partition
+
+# http://www.googlinux.com/ansible-2-3-new-modules/index.html
+
+- name: Get partiotion info
+  parted: device=/dev/xvdh unit=MiB state=info
+  register: xvdh_info
+
+- name: Debug device_stat
+  debug:
+    var: xvdh_info
+    # msg: "{{ xvdh_info }}"
+
+- name: Create partition
+  parted:
+    device: /dev/xvdh
+    number: "{{ item.num }}"
+    state: absent
+  with_items:
+    - "{{ xvdh_info.partitions }}"
+  when: not item.num
+
+
+
+- name: Format device
+  filesystem:
+    fstype: ext4
+    dev: /dev/xvdh
+    opts: -cc
+
+- name: Mount data for docker
+  mount: 
+    state: mounted
+    src: "/dev/xvdh"
+    name: "/data"
+    fstype: "ext4"
+    opts: defaults,noatime
+    dump: 0
+    passno: 0
+
+
+
+

@@ -1,0 +1,7 @@
+# vars file for apt-file
+---
+apt_file_dependencies:
+  - apt-file
+
+# additional_packages:
+#   - firmware-realtek

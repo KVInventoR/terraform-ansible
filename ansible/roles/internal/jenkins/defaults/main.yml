@@ -1,0 +1,69 @@
+---
+
+jenkins_network: 'jenkins'
+
+# jenkins_image: 'jenkins/jenkins:alpine'
+jenkins_image: 'jenkins/jenkins:lts'
+jenkins_container_name: 'jenkins'
+
+# jenkins_data_container_name: 'jenkins-data'
+jenkins_data_container_name: '/data/jenkins-data'
+
+# jenkins_home: ''
+
+jenkins_published_ports:
+  - 8080:8080
+  - 50000:50000
+
+jenkins_log_driver: json-file
+jenkins_log_options:
+  labels: jenkins
+
+jenkins_restart_policy: 'on-failure'
+
+jenkins_admin_username: admin
+jenkins_admin_password: admin321
+
+jenkins_process_user: ubuntu
+jenkins_process_group: ubuntu
+
+jenkins_plugins_state: 'present'
+jenkins_plugin_timeout: 120
+jenkins_plugin_updates_expiration: 86400
+jenkins_hostname: "{{inventory_hostname}}"
+jenkins_http_port: 8080
+jenkins_url_prefix: ""
+
+
+# https://github.com/kohsuke/jenkins/blob/master/core/src/main/resources/jenkins/install/platform-plugins.json
+jenkins_plugins: 
+  - build-pipeline-plugin
+  - 
+  # install Organisation and Administration plugins
+  - cloudbees-folder
+  - antisamy-markup-formatter
+  # install Build Features plugins
+  - build-timeout
+  - credentials-binding
+  - timestamper
+  - ws-cleanup
+  # install Build Tools plugins
+  - ant
+  - gradle
+  # install Pipelines and Continuous Delivery plugins
+  - workflow-aggregator:2.0
+  - github-organization-folder:1.6
+  - pipeline-stage-view:2.0
+  # install Source Code Management plugins
+  - git
+  - subversion
+  # install Distributed Builds plugins
+  - ssh-slaves
+  # install User Management and Security plugins
+  - matrix-auth
+  - pam-auth
+  - ldap
+  # install Notifications and Publishing plugins
+  - email-ext
+  - mailer
+

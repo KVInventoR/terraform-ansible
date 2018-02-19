@@ -1,0 +1,16 @@
+---
+
+- name: Creates directory
+  file:
+    path: "{{ jenkins_data_container_name }}"
+    state: directory
+    owner: "{{ jenkins_process_user }}"
+    group: "{{ jenkins_process_group }}"
+    mode: 0775
+
+- import_tasks: docker.yml
+  tags: jenkins
+
+- import_tasks: plugins.yml
+  tags: jenkins
+

@@ -1,0 +1,14 @@
+---
+# Playbook for jenkins host
+
+- hosts: all
+  become: True
+
+  vars:
+    docker_data_dir: "/data/docker-data"
+
+  roles:
+    - { role: software, tags: ['software'] }
+    # - { role: partition, tags: ['partition'] }
+    # - { role: dochang.docker, tags: ['docker'] }
+    # - { role: jenkins, tags: ['jenkins'] }

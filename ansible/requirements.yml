@@ -1,0 +1,7 @@
+---
+# requirements.yml for ansible
+
+- name: dochang.docker
+  src: https://github.com/dochang/ansible-role-docker.git
+  version: origin/master
+

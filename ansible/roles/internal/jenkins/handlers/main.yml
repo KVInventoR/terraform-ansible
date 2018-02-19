@@ -1,0 +1,15 @@
+- name: configure default users
+  template:
+    src: basic-security.groovy
+    # dest: "{{ jenkins_home }}/init.groovy.d/basic-security.groovy"
+    dest: "{{ jenkins_data_container_name }}/init.groovy.d/basic-security.groovy"
+    owner: "{{ jenkins_process_user }}"
+    group: "{{ jenkins_process_group }}"
+    mode: 0775
+  register: jenkins_users_config
+
+- name: Restart above container
+  docker_container:
+    name: "{{ jenkins_container_name }}"
+    state: "started"
+    restart: "yes"

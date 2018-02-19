@@ -55,17 +55,17 @@ resource "ansible_host" "ec2-jenkins" {
   }
 }
 
-# resource "null_resource" "ec2-jenkins" {
-#   depends_on = ["ansible_host.ec2-jenkins"]
+resource "null_resource" "ec2-jenkins" {
+  depends_on = ["ansible_host.ec2-jenkins"]
 
-#   triggers {
-#     key = "${uuid()}"
-#   }
+  triggers {
+    key = "${uuid()}"
+  }
 
-#   provisioner "local-exec" {
-#     command = "cd ansible && TF_STATE='../terraform.tfstate' ansible-playbook -u ubuntu -e 'ansible_python_interpreter=/usr/bin/python3' -i terraform.py --private-key=../keys/jenkins playbooks/jenkins.yml"
-#   }
-# }
+  provisioner "local-exec" {
+    command = "cd ansible && TF_STATE='../terraform.tfstate' ansible-playbook -u ${var.INSTANCE_USERNAME} -e 'ansible_python_interpreter=/usr/bin/python3' -i terraform.py --private-key=../${var.PATH_TO_PRIVATE_KEY} playbooks/jenkins.yml"
+  }
+}
 
 # TF_STATE="../terraform.tfstate" ansible --private-key=../keys/jenkins -u ec2-user -i terraform.py -m ping all
 

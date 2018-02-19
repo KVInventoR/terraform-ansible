@@ -23,3 +23,5 @@
 
 ssh-keys/*
 ssl-certs/*
+ansible/roles/external/*
+
