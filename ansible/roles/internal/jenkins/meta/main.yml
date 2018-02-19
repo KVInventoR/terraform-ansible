@@ -1,17 +1,12 @@
 galaxy_info:
-  author: clayman74
+  author: inventor
   description: Jenkins CI server into Docker containers
 
   license: MIT
 
-  min_ansible_version: 2.4
+  min_ansible_version: 2.2
 
   platforms:
-    - name: Debian
+    - name: Ubuntu
       versions:
         - jessie
-
-  galaxy_tags: ['docker', 'jenkins']
-
-dependencies:
-  - { role: clayman74.docker }

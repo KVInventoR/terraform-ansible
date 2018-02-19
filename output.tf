@@ -2,9 +2,9 @@ output "name_servers" {
   value = "${aws_route53_zone.default_hosted_zone.name_servers}"
 }
 
-# # output "elb" {
-# #   value = "${aws_elb.jenkins-elb.dns_name}"
-# # }
+output "elb" {
+  value = "${aws_alb.jenkins-elb.dns_name}"
+}
 
 output "certificate" {
   value = "${aws_iam_server_certificate.jenkins-certificate.arn}"

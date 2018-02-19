@@ -2,7 +2,6 @@
 
 jenkins_network: 'jenkins'
 
-# jenkins_image: 'jenkins/jenkins:alpine'
 jenkins_image: 'jenkins/jenkins:lts'
 jenkins_container_name: 'jenkins'
 
@@ -22,7 +21,7 @@ jenkins_log_options:
 jenkins_restart_policy: 'on-failure'
 
 jenkins_admin_username: admin
-jenkins_admin_password: admin321
+jenkins_admin_password: admin
 
 jenkins_process_user: ubuntu
 jenkins_process_group: ubuntu

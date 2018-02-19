@@ -26,5 +26,7 @@ ssl-certs/*
 ansible/roles/external/*
 *.log
 */*.log
-ansible.log
+ansible/ansible.log
+
+*~
 

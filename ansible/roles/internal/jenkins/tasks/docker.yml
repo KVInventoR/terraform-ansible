@@ -55,14 +55,10 @@
     published_ports: "{{ jenkins_published_ports }}"
     restart_policy: "{{ jenkins_restart_policy }}"
     env:
-      # JENKINS_JAVA_OPTIONS: "-Djenkins.install.runSetupWizard=false"
       JAVA_OPTS: "-Djenkins.install.runSetupWizard=false"
     volumes:
         - "{{jenkins_data_container_name}}:/var/jenkins_home"
-    # volumes_from:
-    #   - "{{ jenkins_data_container_name }}"
   when: jenkins_container.stdout.find('{{ jenkins_container_name }}') == -1
-  # notify: configure default users
 
 - name: Wait for Jenkins starts
   wait_for:
@@ -70,25 +66,18 @@
     delay: 10
   when: jenkins_container.stdout.find('{{ jenkins_container_name }}') == -1
 
-- name: Get initial admin password
-  shell: docker run --rm --volumes-from={{ jenkins_container_name }} {{ jenkins_image }} cat /var/jenkins_home/secrets/initialAdminPassword
-  register: admin_password
-  when: jenkins_container.stdout.find('{{ jenkins_container_name }}') == -1
+# - name: Get initial admin password
+#   shell: docker run --rm --volumes-from={{ jenkins_container_name }} {{ jenkins_image }} cat /var/jenkins_home/secrets/initialAdminPassword
+#   register: admin_password
+#   when: jenkins_container.stdout.find('{{ jenkins_container_name }}') == -1
 
-- name: Print initial admin password
-  debug: msg="Initial admin password is`{{ admin_password.stdout }}`"
-  when: jenkins_container.stdout.find('{{ jenkins_container_name }}') == -1
+# - name: Print initial admin password
+#   debug: msg="Initial admin password is`{{ admin_password.stdout }}`"
+#   when: jenkins_container.stdout.find('{{ jenkins_container_name }}') == -1
 
 
 - name: Debug info
   debug:
     msg: "Call restart container"
   notify: Restart above container
-
-# - name: Restart above container
-#   docker_container:
-#     name: "{{ jenkins_container_name }}"
-#     state: "started"
-#     restart: "yes"
-
 

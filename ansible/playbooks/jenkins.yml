@@ -8,9 +8,11 @@
     additional_disk: "/dev/xvdh"
     additional_disk_mount: "/data"
     docker_data_dir: "/data/docker-data"
+    jenkins_admin_username: admin
+    jenkins_admin_password: admin321
 
   roles:
     - { role: software, tags: ['software'] }
     - { role: partition, tags: ['partition'] }
-    # - { role: dochang.docker, tags: ['docker'] }
-    # - { role: jenkins, tags: ['jenkins'] }
+    - { role: dochang.docker, tags: ['docker'] }
+    - { role: jenkins, tags: ['jenkins'] }
