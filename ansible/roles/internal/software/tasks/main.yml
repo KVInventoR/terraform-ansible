@@ -1,49 +1,6 @@
 ---
 # main.yml for software role
 
-- name: Default users
-  set_fact: users1={{ users | default([]) }}
-
-    # with_items: "{{users | default([])}}"
-    # with_items: "[ {{users | default([])}} ]"
-
-- name: Show message
-  debug:
-    msg: "First"
-
-- name: Show env vars
-  debug:
-    var: "{{ environment }}"
-
-# - name: Save vars
-#   local_action: copy content={{ vars }} dest=./../dump_vars.log
-
-# - name: Dump vars
-#   local_action: template src=templates/dumpall.j2 dest=./../dumpall.log
-
-# - name: set timezone to Europe/Kiev
-#   become: True
-#   timezone:
-#     name: Europe/Kiev
-
-# - name: Replace default source.list
-#   become: True
-#   template:
-#     src: templates/source.list.j2
-#     dest: /etc/apt/sources.list
-#     owner: root
-#     group: root
-#     mode: "u=rw,g=r,o=r"
-
-# - name: Add APT policy
-#   become: True
-#   template:
-#     src: "templates/{{ item.name }}.j2"
-#     dest: "/etc/apt/preferences.d/{{ item.name }}"
-#   with_items:
-#     - { name: non-free_policy }
-#     - { name: non-free_firmware }
-
 - name: Update apt-get cache
   become: True
   apt:
@@ -54,11 +11,7 @@
   become: True
   apt:
     name: "{{ item }}"
-    # update_cache: yes
     dpkg_options: 'force-confold,force-confdef'
-    # cache_valid_time: "{{ apt_update_cache_valid_time | default(3600) }}"
-    # upgrade: dist
-  # with_items: "{{ additional_packages | default() }}"
   with_items:
     - iputils-ping
     - inetutils-tools
@@ -90,72 +43,7 @@
   tags:
     - install_pkg
 
-# - name: Install special packages
-#   become: True
-#   apt:
-#     name: "{{ item }}"
-#     # update_cache: yes
-#     dpkg_options: 'force-confold,force-confdef'
-#     # upgrade: dist
-#   # with_items: "{{ additional_packages | default() }}"
-#   with_items:
-#     - "{{ additional_packages }}"
-#   when: additional_packages is defined and additional_packages > 0
-#     # - "{{ additional_packages | default() }}"
-#   tags:
-#     - install_pkg
-
 - name: Include apt-file configuration
   include: "apt-file.yml"
   tags:
     - environment
-
-# - name: Replace default source.list
-#   become: True
-#   template:
-#     src: templates/bash/bashrc.j2
-#     dest: "{{ item.dest }}/.bashrc"
-#     owner: "{{ item.owner }}"
-#     group: "{{ item.group }}"
-#     mode: "u=rw,g=r,o=r"
-#   with_items:
-#     - { dest: "/root",          owner: "root",    group: "root" }
-#     - { dest: "/home/control",  owner: "control", group: "control" }
-
-# - name: Add local vim configuration
-#   become: True
-#   template:
-#     src: templates/vim/vimrc.local.j2
-#     dest: /etc/vim/vimrc.local
-#     owner: root
-#     group: root
-#     mode: "u=rw,g=r,o=r"
-
-
-# - name: Generate local ssh-rsa key
-#   user:
-#     name: "{{ ansible_user_id }}"
-#     generate_ssh_key: true
-#     ssh_key_file: "~{{ ansible_user_id }}/.ssh/id_rsa"
-#     ssh_key_type: rsa
-#     ssh_key_comment: "{{ ansible_user_id }}@{{ ansible_hostname }}-lxctest"
-
-# - name: Store vars
-#   local_action: shell ps
-#   register: ps
-
-# - name: show ps
-#   debug:
-#     var: ps
-    # copy:
-    #   content: "{{ vars }}"
-    #   dest: dump_vars.log
-
-# -  
-#   name: Create a new file
-#   # file: path="/etc/testtest-{{ec2_tags['tags']['ansible_environment'].conf" state=touch
-#   copy:
-#     content: "{{ec2_tags}}"
-#     dest: /tmp/ec2tags.txt
-#   tags:
-#     - environment

@@ -1,41 +1,38 @@
 ---
 # Role partition
-
 # http://www.googlinux.com/ansible-2-3-new-modules/index.html
 
 - name: Get partiotion info
-  parted: device=/dev/xvdh unit=MiB state=info
-  register: xvdh_info
+  parted: device={{ additional_disk }} unit=MiB state=info
+  register: additional_disk_info
 
 - name: Debug device_stat
   debug:
-    var: xvdh_info
-    # msg: "{{ xvdh_info }}"
+    var: additional_disk_info
 
 - name: Create partition
   parted:
-    device: /dev/xvdh
+    device: "{{ additional_disk }}"
     number: "{{ item.num }}"
     state: absent
   with_items:
-    - "{{ xvdh_info.partitions }}"
+    - "{{ additional_disk_info.partitions }}"
   when: not item.num
-
-
 
 - name: Format device
   filesystem:
     fstype: ext4
-    dev: /dev/xvdh
-    opts: -cc
+    dev: "{{ additional_disk }}"
+    # opts: -cc   # Check for diskerros by badblocks
+    # badblocks -b 4096 -X -s -w /dev/xvdh 13107199
 
 - name: Mount data for docker
   mount: 
     state: mounted
-    src: "/dev/xvdh"
-    name: "/data"
+    src: "{{ additional_disk }}"
+    name: "{{ additional_disk_mount }}"
     fstype: "ext4"
-    opts: defaults,noatime
+    opts: defaults,noatime,nodiratime
     dump: 0
     passno: 0
 

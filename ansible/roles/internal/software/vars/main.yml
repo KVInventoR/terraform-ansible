@@ -2,6 +2,3 @@
 ---
 apt_file_dependencies:
   - apt-file
-
-# additional_packages:
-#   - firmware-realtek

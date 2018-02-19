@@ -24,6 +24,7 @@
 ssh-keys/*
 ssl-certs/*
 ansible/roles/external/*
-ansible/*.log
-ansible/ansible.log
+*.log
+*/*.log
+ansible.log
 
