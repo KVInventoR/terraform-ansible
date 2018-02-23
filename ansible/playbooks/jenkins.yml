@@ -1,6 +1,7 @@
 ---
 # Playbook for jenkins host
 
+# - hosts: all
 - hosts: all
   become: True
 

@@ -62,3 +62,18 @@ variable "SSL_CERT_FOR_ELB" {
 variable "SSL_KEY_FOR_ELB" {
   default = "SSL KEY"
 }
+
+variable "ANSIBLE_INVENTORY_DIR" {
+  type        = "string"
+  description = "Dir for Ansible inventory files"
+}
+
+variable "ANSIBLE_INVENTORY_NAME" {
+  type        = "string"
+  description = "inventory file name"
+}
+
+variable "ANSIBLE_PYTHON_PATH" {
+  type        = "string"
+  description = "Path for Ansible on target instance"
+}
