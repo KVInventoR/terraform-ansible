@@ -29,4 +29,5 @@ ansible/roles/external/*
 ansible/ansible.log
 
 *~
+ansible/inventory/*.ini
 
