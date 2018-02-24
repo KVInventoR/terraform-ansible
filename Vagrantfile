@@ -30,5 +30,6 @@ Vagrant.configure("2") do |config|
     config.vm.provision "shell", path: "vagrant/install-aws-cli.sh"
     config.vm.provision "shell", path: "vagrant/install-terraform.sh"
     config.vm.provision "shell", path: "vagrant/install-ansible.sh"
+    config.vm.provision "shell", path: "vagrant/install-ansible-roles.sh"
 
 end
