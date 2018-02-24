@@ -33,9 +33,7 @@ jenkins_hostname: "{{inventory_hostname}}"
 jenkins_http_port: 8080
 jenkins_url_prefix: ""
 
-
-# https://github.com/kohsuke/jenkins/blob/master/core/src/main/resources/jenkins/install/platform-plugins.json
-jenkins_plugins: 
+jenkins_plugins:
   - build-pipeline-plugin
   - 
   # install Organisation and Administration plugins
@@ -65,4 +63,3 @@ jenkins_plugins:
   # install Notifications and Publishing plugins
   - email-ext
   - mailer
-

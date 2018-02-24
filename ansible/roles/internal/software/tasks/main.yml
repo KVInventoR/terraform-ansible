@@ -1,6 +1,4 @@
 ---
-# main.yml for software role
-
 - name: Update apt-get cache
   become: True
   apt:
