@@ -5,6 +5,7 @@ resource "aws_instance" "ec2-openvpn" {
   key_name               = "${aws_key_pair.access-key.key_name}"
   subnet_id              = "${aws_subnet.main-public-1.id }"
   vpc_security_group_ids = ["${aws_security_group.ec2-securitygroup.id}"]
+  source_dest_check  = false
 
   root_block_device {
     volume_size           = "${var.DEFAULT_EC2_SIZE}"

@@ -3,8 +3,11 @@ resource "aws_instance" "ec2-jenkins" {
   ami                    = "${data.aws_ami.ubuntu.id}"
   instance_type          = "t2.micro"
   key_name               = "${aws_key_pair.access-key.key_name}"
-  subnet_id              = "${aws_subnet.main-public-1.id }"
-  vpc_security_group_ids = ["${aws_security_group.ec2-securitygroup.id}"]
+
+  network_interface {
+    network_interface_id = "${aws_network_interface.jenkins-eni.id}"
+    device_index = 0
+  }
 
   root_block_device {
     volume_size           = "${var.DEFAULT_EC2_SIZE}"

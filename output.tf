@@ -1,6 +1,6 @@
-output "name_servers" {
-  value = "${aws_route53_zone.default_hosted_zone.name_servers}"
-}
+#output "name_servers" {
+#  value = "${aws_route53_zone.default_hosted_zone.name_servers}"
+#}
 
 output "jenkins-private_ip" {
   value = "${aws_instance.ec2-jenkins.*.private_ip}"
@@ -18,10 +18,10 @@ output "elb" {
   value = "${aws_alb.jenkins-elb.dns_name}"
 }
 
-output "route53-elb" {
-  value = "${aws_route53_record.jenkins-elb.name}"
-}
+#output "route53-elb" {
+#  value = "${aws_route53_record.jenkins-elb.name}"
+#}
 
-output "openvpn-public_ip" {
-  value = "${aws_instance.ec2-openvpn.*.public_ip}"
-}
+#output "openvpn-public_ip" {
+#  value = "${aws_instance.ec2-openvpn.*.public_ip}"
+#}
