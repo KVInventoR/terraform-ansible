@@ -23,7 +23,7 @@ variable "INSTANCE_USERNAME" {
   default = "ubuntu"
 }
 
-variable "DEFAULT_ROUTE53_ZONE" {
+variable "ROUTE53_ZONE" {
   description = "Default hosted zone"
 }
 

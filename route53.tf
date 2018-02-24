@@ -1,5 +1,5 @@
 data "aws_route53_zone" "selected" {
-  name = "${var.DEFAULT_ROUTE53_ZONE}"
+  name = "${var.ROUTE53_ZONE}"
   private_zone = false
 }
 
