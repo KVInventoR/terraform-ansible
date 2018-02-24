@@ -2,7 +2,7 @@ data "aws_region" "current" {}
 
 resource "aws_sns_topic" "jenkins-watch" {
   name  = "jenkins-watch"
-  display_name = "Jenkins monitoring"
+  display_name = "jenkins-watch"
 }
 
 resource "null_resource" "jenkins-watch-alerts-subscription" {
