@@ -29,7 +29,7 @@ variable "ROUTE53_ZONE" {
 
 variable "CLOUDTRAIL_IS_MULTI_REGION" {
   description = "Configure Cloudtrail"
-  default = true
+  default = false
 }
 
 # Include events from global services such as IAM
@@ -41,12 +41,12 @@ variable "INSTANCE_DEVICE_NAME" {
   description = "Attach EBS volume"
 }
 
-variable "DEFAULT_EC2_SIZE" {
+variable "DEFAULT_EBS_SIZE" {
   description = "Size of root volume for Jenkins EC2"
   default = "8"
 }
 
-variable "EBS_VOLUME_SIZE" {
+variable "ADDITIONAL_EBS_SIZE" {
   description = "EBS volume size"
   default = "50"
 }
@@ -55,7 +55,7 @@ variable "NOTIFICATION_ENDPOINT" {
   description = "SNS email"
 }
 
-variable "SECURITY_GROUP_ACCESS" {
+variable "SSH_IP_ACL" {
   type = "list"
   description = "Access IPs. Need access for EC2 and ELB"
 }

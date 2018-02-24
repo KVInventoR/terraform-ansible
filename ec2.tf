@@ -9,7 +9,7 @@ resource "aws_instance" "ec2-jenkins" {
   }
 
   root_block_device {
-    volume_size = "${var.DEFAULT_EC2_SIZE}"
+    volume_size = "${var.DEFAULT_EBS_SIZE}"
     volume_type = "gp2"
     delete_on_termination = true
   }
@@ -32,7 +32,7 @@ resource "aws_instance" "ec2-jenkins" {
 
 resource "aws_ebs_volume" "ebs-volume-1" {
   availability_zone = "${var.AWS_REGION}a"
-  size = "${var.EBS_VOLUME_SIZE}"
+  size = "${var.ADDITIONAL_EBS_SIZE}"
   type = "gp2"
 
   tags {

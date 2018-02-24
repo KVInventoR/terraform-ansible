@@ -1,5 +1,5 @@
-output "jenkins-public_dns" {
-  value = "${aws_instance.ec2-jenkins.*.public_dns}"
+output "jenkins-dns_name" {
+  value = "https://jenkins.${data.aws_route53_zone.selected.name}"
 }
 
 output "jenkins-private_ip" {

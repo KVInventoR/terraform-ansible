@@ -15,7 +15,7 @@ resource "aws_security_group" "securitygroup-ec2-jenkins" {
     from_port = 22
     to_port = 22
     protocol = "TCP"
-    cidr_blocks = "${var.SECURITY_GROUP_ACCESS}"
+    cidr_blocks = "${var.SSH_IP_ACL}"
   }
 
   ingress {
