@@ -21,7 +21,3 @@ output "elb" {
 #output "route53-elb" {
 #  value = "${aws_route53_record.jenkins-elb.name}"
 #}
-
-#output "openvpn-public_ip" {
-#  value = "${aws_instance.ec2-openvpn.*.public_ip}"
-#}
