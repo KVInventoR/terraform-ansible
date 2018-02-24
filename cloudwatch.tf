@@ -100,7 +100,7 @@ resource "aws_cloudwatch_metric_alarm" "jenkins-ec2-credits" {
   period = "300"
   evaluation_periods = "1"
 
-  threshold = "100"
+  threshold = "25"
   comparison_operator = "LessThanOrEqualToThreshold"
 
   dimensions {
