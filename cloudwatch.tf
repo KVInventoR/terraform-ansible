@@ -53,7 +53,7 @@ resource "aws_cloudwatch_metric_alarm" "jenkins-alb-4xx-errors" {
   metric_name = "HTTPCode_ELB_4XX_Count"
   namespace = "AWS/ApplicationELB"
   statistic = "Sum"
-  period = "60"
+  period = "300"
   evaluation_periods = "1"
   unit = "Count"
   threshold = "0"
@@ -75,7 +75,7 @@ resource "aws_cloudwatch_metric_alarm" "jenkins-alb-5xx-errors" {
   metric_name = "HTTPCode_ELB_5XX_Count"
   namespace = "AWS/ApplicationELB"
   statistic = "Sum"
-  period = "60"
+  period = "300"
   evaluation_periods = "1"
   unit = "Count"
   threshold = "0"
@@ -97,10 +97,10 @@ resource "aws_cloudwatch_metric_alarm" "jenkins-ec2-credits" {
   metric_name = "CPUCreditBalance"
   namespace = "AWS/EC2"
   statistic = "Average"
-  period = "120"
-  evaluation_periods = "10"
+  period = "300"
+  evaluation_periods = "1"
 
-  threshold = "200"
+  threshold = "100"
   comparison_operator = "LessThanOrEqualToThreshold"
 
   dimensions {
@@ -119,10 +119,10 @@ resource "aws_cloudwatch_metric_alarm" "jenkins-ec2-cpu-loads" {
   metric_name = "CPUUtilization"
   namespace = "AWS/EC2"
   statistic = "Average"
-  period = "120"
-  evaluation_periods = "10"
+  period = "300"
+  evaluation_periods = "1"
 
-  threshold = "80"
+  threshold = "75"
   comparison_operator = "GreaterThanOrEqualToThreshold"
 
   dimensions {
@@ -141,10 +141,10 @@ resource "aws_cloudwatch_metric_alarm" "jenkins-ec2-ebs-burstbalance" {
   metric_name = "BurstBalance"
   namespace = "AWS/EBS"
   statistic = "Average"
-  period = "120"
-  evaluation_periods = "10"
+  period = "300"
+  evaluation_periods = "1"
 
-  threshold = "40"
+  threshold = "100"
   comparison_operator = "LessThanOrEqualToThreshold"
 
   dimensions {
@@ -163,10 +163,10 @@ resource "aws_cloudwatch_metric_alarm" "jenkins-ec2-ebs-volume-queue-lenght" {
   metric_name = "VolumeQueueLength"
   namespace = "AWS/EBS"
   statistic = "Average"
-  period = "120"
-  evaluation_periods = "10"
+  period = "300"
+  evaluation_periods = "1"
 
-  threshold = "30"
+  threshold = "3"
   comparison_operator = "GreaterThanOrEqualToThreshold"
 
   dimensions {
