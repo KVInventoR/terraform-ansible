@@ -5,3 +5,11 @@
   src: https://github.com/dochang/ansible-role-docker.git
   version: origin/master
 
+- src: https://github.com/Stouts/Stouts.openvpn
+  # version: 1d08b23
+  version: origin/master
+  name: Stouts.openvpn
+
+
+
+

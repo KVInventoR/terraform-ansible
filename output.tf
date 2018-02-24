@@ -6,16 +6,16 @@ output "certificate" {
   value = "${aws_iam_server_certificate.jenkins-certificate.arn}"
 }
 
-output "private_ip" {
-  value = "${aws_instance.ec2-jenkins.private_ip}"
+output "jenkins-private_ip" {
+  value = "${aws_instance.ec2-jenkins.*.private_ip}"
 }
 
-output "public_ip" {
-  value = "${aws_instance.ec2-jenkins.public_ip}"
+output "jenkins-public_ip" {
+  value = "${aws_instance.ec2-jenkins.*.public_ip}"
 }
 
-output "public_dns" {
-  value = "${aws_instance.ec2-jenkins.public_dns}"
+output "jenkins-public_dns" {
+  value = "${aws_instance.ec2-jenkins.*.public_dns}"
 }
 
 output "elb" {
@@ -24,4 +24,8 @@ output "elb" {
 
 output "route53-elb" {
   value = "${aws_route53_record.jenkins-elb.name}"
+}
+
+output "openvpn-public_ip" {
+  value = "${aws_instance.ec2-openvpn.*.public_ip}"
 }

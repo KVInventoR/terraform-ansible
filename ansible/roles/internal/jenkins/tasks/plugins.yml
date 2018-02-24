@@ -1,6 +1,28 @@
 ---
 # plugins.yml
 
+# - name: Wait for Jenkins to start up
+#   uri:
+#     url: http://{{ jenkins_hostname }}:{{ jenkins_http_port }}{{ jenkins_url_prefix }}
+#     status_code: 200
+#     timeout: 5
+#   register: jenkins_service_status
+#   # Keep trying for 5 mins in 5 sec intervals
+#   retries: 60
+#   delay: 5
+#   until: >
+#      'status' in jenkins_service_status and
+#      jenkins_service_status['status'] == 200
+
+- name: "wait for ABC to come up"
+  uri:
+    url: "http://{{ jenkins_hostname }}:{{ jenkins_http_port }}/login"
+    status_code: 200
+  register: result
+  until: result.status == 200
+  retries: 60
+  delay: 1
+
 - name: Install Jenkins plugins using password.
   jenkins_plugin:
     name: "{{ item }}"
