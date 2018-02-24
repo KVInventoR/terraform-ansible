@@ -1,5 +1,3 @@
-# ALB alarms
-# =============================================================================
 data "aws_region" "current" {}
 
 resource "aws_sns_topic" "jenkins-watch" {
@@ -22,10 +20,8 @@ CMD
   }
 }
 
-# ALB alarms
-# =============================================================================
 resource "aws_cloudwatch_metric_alarm" "jenkins-alb-no-healthy-hosts" {
-  depends_on = ["aws_alb.jenkins-elb"]
+  depends_on = ["aws_alb.jenkins-lb"]
 
   alarm_name          = "Jenkins in ${var.AWS_REGION} ALB: No healthy hosts"
   alarm_description   = "No healthy hosts for Jenkins master"
@@ -42,13 +38,12 @@ resource "aws_cloudwatch_metric_alarm" "jenkins-alb-no-healthy-hosts" {
   comparison_operator = "LessThanOrEqualToThreshold"
 
   dimensions {
-    LoadBalancer = "${aws_alb.jenkins-elb.name}"
+    LoadBalancer = "${aws_alb.jenkins-lb.name}"
   }
 }
 
-# amount of 4XX errors
 resource "aws_cloudwatch_metric_alarm" "jenkins-alb-4xx-errors" {
-  depends_on = ["aws_alb.jenkins-elb"]
+  depends_on = ["aws_alb.jenkins-lb"]
 
   alarm_name          = "Jenkins in ${var.AWS_REGION} ALB: 4XX ERRORS"
   alarm_description   = "No healthy hosts for Jenkins master"
@@ -65,13 +60,12 @@ resource "aws_cloudwatch_metric_alarm" "jenkins-alb-4xx-errors" {
   comparison_operator = "GreaterThanThreshold"
 
   dimensions {
-    LoadBalancer = "${aws_alb.jenkins-elb.name}"
+    LoadBalancer = "${aws_alb.jenkins-lb.name}"
   }
 }
 
-# amount of 5XX errors
 resource "aws_cloudwatch_metric_alarm" "jenkins-alb-5xx-errors" {
-  depends_on = ["aws_alb.jenkins-elb"]
+  depends_on = ["aws_alb.jenkins-lb"]
 
   alarm_name          = "Jenkins in ${var.AWS_REGION} ALB: 5XX ERRORS"
   alarm_description   = "No healthy hosts for Jenkins master"
@@ -88,13 +82,10 @@ resource "aws_cloudwatch_metric_alarm" "jenkins-alb-5xx-errors" {
   comparison_operator = "GreaterThanThreshold"
 
   dimensions {
-    LoadBalancer = "${aws_alb.jenkins-elb.name}"
+    LoadBalancer = "${aws_alb.jenkins-lb.name}"
   }
 }
 
-# EC2 alarms
-# =============================================================================
-# Credits
 resource "aws_cloudwatch_metric_alarm" "jenkins-ec2-credits" {
   depends_on = ["aws_instance.ec2-jenkins"]
 
@@ -109,7 +100,6 @@ resource "aws_cloudwatch_metric_alarm" "jenkins-ec2-credits" {
   period             = "120"
   evaluation_periods = "10"
 
-  # unit                = "Credits"
   threshold           = "200"
   comparison_operator = "LessThanOrEqualToThreshold"
 
@@ -118,7 +108,6 @@ resource "aws_cloudwatch_metric_alarm" "jenkins-ec2-credits" {
   }
 }
 
-# CPU Load
 resource "aws_cloudwatch_metric_alarm" "jenkins-ec2-cpu-loads" {
   depends_on = ["aws_instance.ec2-jenkins"]
 
@@ -141,33 +130,6 @@ resource "aws_cloudwatch_metric_alarm" "jenkins-ec2-cpu-loads" {
   }
 }
 
-# StatusCheckFailed_Instance
-# resource "aws_cloudwatch_metric_alarm" "jenkins-ec2-check-failed" {
-#   depends_on = ["aws_instance.ec2-jenkins"]
-
-#   alarm_name         = "Jenkins in ${var.AWS_REGION} EC2: StatusCheckFailed"
-#   alarm_description  = "StatusCheckFailed for Jenkins Master"
-#   actions_enabled    = "true"
-#   alarm_actions      = ["${aws_sns_topic.jenkins-watch.arn}"]
-#   ok_actions         = ["${aws_sns_topic.jenkins-watch.arn}"]
-#   metric_name        = "StatusCheckFailed_Instance"
-#   namespace          = "AWS/EC2"
-#   statistic          = "Average"
-#   period             = "120"
-#   evaluation_periods = "10"
-
-#   threshold           = "80"
-#   comparison_operator = "GreaterThanOrEqualToThreshold"
-
-#   dimensions {
-#     InstanceId = "${aws_instance.ec2-jenkins.id}"
-#   }
-# }
-
-# EBS alarms
-# =============================================================================
-
-# BurstBalance
 resource "aws_cloudwatch_metric_alarm" "jenkins-ec2-ebs-burstbalance" {
   depends_on = ["aws_ebs_volume.ebs-volume-1"]
 
@@ -190,7 +152,6 @@ resource "aws_cloudwatch_metric_alarm" "jenkins-ec2-ebs-burstbalance" {
   }
 }
 
-# VolumeQueueLength
 resource "aws_cloudwatch_metric_alarm" "jenkins-ec2-ebs-volume-queue-lenght" {
   depends_on = ["aws_ebs_volume.ebs-volume-1"]
 

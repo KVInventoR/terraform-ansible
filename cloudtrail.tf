@@ -1,5 +1,3 @@
-# CLOUDTRAIL CONFIGURATION
-# =============================================================================
 resource "aws_cloudtrail" "cloudtrail-logging" {
   name                          = "cloudtrail-logging"
   s3_bucket_name                = "${aws_s3_bucket.cloudtrail-s3bucket.id}"

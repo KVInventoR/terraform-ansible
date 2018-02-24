@@ -15,9 +15,9 @@ output "jenkins-public_dns" {
 }
 
 output "elb" {
-  value = "${aws_alb.jenkins-elb.dns_name}"
+  value = "${aws_alb.jenkins-lb.dns_name}"
 }
 
 #output "route53-elb" {
-#  value = "${aws_route53_record.jenkins-elb.name}"
+#  value = "${aws_route53_record.jenkins-lb.name}"
 #}

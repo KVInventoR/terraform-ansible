@@ -8,5 +8,5 @@ resource "aws_route53_record" "jenkins-name" {
   name    = "jenkins.${data.aws_route53_zone.selected.name}"
   type    = "CNAME"
   ttl     = "300"
-  records = ["${aws_alb.jenkins-elb.dns_name}"]
+  records = ["${aws_alb.jenkins-lb.dns_name}"]
 }
