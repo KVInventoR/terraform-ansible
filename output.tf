@@ -2,10 +2,6 @@ output "name_servers" {
   value = "${aws_route53_zone.default_hosted_zone.name_servers}"
 }
 
-output "certificate" {
-  value = "${aws_iam_server_certificate.jenkins-certificate.arn}"
-}
-
 output "jenkins-private_ip" {
   value = "${aws_instance.ec2-jenkins.*.private_ip}"
 }

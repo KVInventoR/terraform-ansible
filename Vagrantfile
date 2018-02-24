@@ -29,6 +29,5 @@ Vagrant.configure("2") do |config|
     config.vm.provision "shell", path: "vagrant/install-common-software.sh"
     config.vm.provision "shell", path: "vagrant/install-aws-cli.sh"
     config.vm.provision "shell", path: "vagrant/install-terraform.sh"
-    config.vm.provision "shell", path: "vagrant/install-terraform-ansible-provider.sh"
 
 end
