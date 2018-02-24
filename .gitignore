@@ -31,3 +31,7 @@ ansible/ansible.log
 *~
 ansible/inventory/*.ini
 
+ansible/playbooks/*.pem
+ansible/playbooks/*.crt
+ansible/playbooks/*.key
+ansible/playbooks/*.ovpn

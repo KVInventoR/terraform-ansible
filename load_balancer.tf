@@ -33,7 +33,7 @@ resource "aws_alb_listener" "jenkins-elb-listener" {
   port              = "443"
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-2015-05"
-  certificate_arn   = "arn:aws:acm:us-east-2:273083888550:certificate/4e3ce84a-6315-40c1-a31a-8cd181f7b355"
+  certificate_arn   = "arn:aws:acm:us-east-2:273083888550:certificate/07a9384c-9d46-42ab-9ed5-7b18b799095a"
 
   default_action {
     target_group_arn = "${aws_alb_target_group.jenkins-elb-target.0.arn}"

@@ -22,8 +22,7 @@
     - Stouts.openvpn
   vars:
     openvpn_use_pam: yes
-    openvpn_clients:
-      - "jenkins-build-system"
+    openvpn_clients: jenkins-build-system
     openvpn_use_pam_users:
       - name: "user1"
         password: "password01"
@@ -60,6 +59,4 @@
         - "{{openvpn_clients}}.key"
         - "{{openvpn_clients}}.crt"
         - ca.crt
-
-
 
