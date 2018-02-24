@@ -1,10 +1,11 @@
 DEFAULT_PROFILE = "default"
-AWS_REGION = "us-west-2"
+AWS_REGION = "us-east-2"
 PATH_TO_PRIVATE_KEY = "ssh-keys/jenkins"
 PATH_TO_PUBLIC_KEY = "ssh-keys/jenkins.pub"
 DEFAULT_ROUTE53_ZONE = "demo.kagarlickij.com"
 INSTANCE_DEVICE_NAME = "/dev/xvdh"
 NOTIFICATION_ENDPOINT = "dmitriy@kagarlickij.com"
-SECURITY_GROUP_ACCESS = ["127.0.0.1/32"]
-SSL_CERT_FOR_ELB = "ssl-certs/server.crt"
-SSL_KEY_FOR_ELB = "ssl-certs/server.key"
+SECURITY_GROUP_ACCESS = ["194.44.229.242/32"]
+ANSIBLE_INVENTORY_DIR = "ansible/inventory"
+ANSIBLE_INVENTORY_NAME = "prod.ini"
+ANSIBLE_PYTHON_PATH = "/usr/bin/python3"

@@ -24,12 +24,12 @@ Vagrant.configure("2") do |config|
         v.cpus = cpu
     end
 
-    config.vm.provision "shell", path: "vagrant/install-updates.sh"
-    config.vm.provision "shell", path: "vagrant/install-zsh.sh"
-    config.vm.provision "shell", path: "vagrant/install-common-software.sh"
-    config.vm.provision "shell", path: "vagrant/install-aws-cli.sh"
-    config.vm.provision "shell", path: "vagrant/install-terraform.sh"
-    config.vm.provision "shell", path: "vagrant/install-ansible.sh"
-    config.vm.provision "shell", path: "vagrant/install-ansible-roles.sh"
+    config.vm.provision "shell", path: "vagrant-scripts/install-updates.sh"
+    config.vm.provision "shell", path: "vagrant-scripts/install-zsh.sh"
+    config.vm.provision "shell", path: "vagrant-scripts/install-common-software.sh"
+    config.vm.provision "shell", path: "vagrant-scripts/install-aws-cli.sh"
+    config.vm.provision "shell", path: "vagrant-scripts/install-terraform.sh"
+    config.vm.provision "shell", path: "vagrant-scripts/install-ansible.sh"
+    config.vm.provision "shell", path: "vagrant-scripts/install-ansible-roles.sh"
 
 end

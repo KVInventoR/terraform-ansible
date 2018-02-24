@@ -28,7 +28,6 @@ resource "aws_alb_target_group" "jenkins-elb-target" {
 }
 
 resource "aws_alb_listener" "jenkins-elb-listener" {
-#  depends_on        = ["aws_iam_server_certificate.jenkins-certificate"]
   load_balancer_arn = "${aws_alb.jenkins-elb.arn}"
   port              = "443"
   protocol          = "HTTPS"

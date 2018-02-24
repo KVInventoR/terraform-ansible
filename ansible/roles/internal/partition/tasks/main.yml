@@ -23,8 +23,6 @@
   filesystem:
     fstype: ext4
     dev: "{{ additional_disk }}"
-    # opts: -cc   # Check for diskerros by badblocks
-    # badblocks -b 4096 -X -s -w /dev/xvdh 13107199
 
 - name: Mount data for docker
   mount: 
@@ -35,7 +33,3 @@
     opts: defaults,noatime,nodiratime
     dump: 0
     passno: 0
-
-
-
-
