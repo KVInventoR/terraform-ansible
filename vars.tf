@@ -6,6 +6,11 @@ variable "AWS_REGION" {
   description = "Define default region for our template"
 }
 
+variable "INSTANCE_TYPE" {
+  description = "Define instance type for EC2"
+  default = "t2.micro"
+}
+
 variable "PATH_TO_PRIVATE_KEY" {
   description = "SSH private key for EC2"
 }
@@ -18,13 +23,13 @@ variable "INSTANCE_USERNAME" {
   default = "ubuntu"
 }
 
-variable "DEFAULT_ROUTE53_ZONE" {
+variable "ROUTE53_ZONE" {
   description = "Default hosted zone"
 }
 
 variable "CLOUDTRAIL_IS_MULTI_REGION" {
   description = "Configure Cloudtrail"
-  default     = true
+  default = false
 }
 
 # Include events from global services such as IAM
@@ -36,44 +41,40 @@ variable "INSTANCE_DEVICE_NAME" {
   description = "Attach EBS volume"
 }
 
-variable "DEFAULT_EC2_SIZE" {
+variable "DEFAULT_EBS_SIZE" {
   description = "Size of root volume for Jenkins EC2"
-  default     = "8"
+  default = "8"
 }
 
-variable "EBS_VOLUME_SIZE" {
+variable "ADDITIONAL_EBS_SIZE" {
   description = "EBS volume size"
-  default     = "50"
+  default = "50"
 }
 
 variable "NOTIFICATION_ENDPOINT" {
   description = "SNS email"
 }
 
-variable "SECURITY_GROUP_ACCESS" {
-  type        = "list"
+variable "SSH_IP_ACL" {
+  type = "list"
   description = "Access IPs. Need access for EC2 and ELB"
 }
 
 variable "SSL_CERT_FOR_ELB" {
-  default = "SSL CERT"
-}
-
-variable "SSL_KEY_FOR_ELB" {
-  default = "SSL KEY"
+  description = "ARN of the cert in ACM"
 }
 
 variable "ANSIBLE_INVENTORY_DIR" {
-  type        = "string"
+  type = "string"
   description = "Dir for Ansible inventory files"
 }
 
 variable "ANSIBLE_INVENTORY_NAME" {
-  type        = "string"
+  type = "string"
   description = "inventory file name"
 }
 
 variable "ANSIBLE_PYTHON_PATH" {
-  type        = "string"
+  type = "string"
   description = "Path for Ansible on target instance"
 }

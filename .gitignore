@@ -1,36 +1,24 @@
 */terraform.tfvars
-
-.DS_Store
-
 */terraform.tfstate
 */terraform.tfstate.backup
 */logs/*
 */.terraform/*
-
 .terraform/
-
-
-
-#  Local .terraform directories
 **/.terraform/*
-
-# .tfstate files
 *.tfstate
 *.tfstate.*
-
 # .tfvars files
 *.tfvars
 
 ssh-keys/*
 ssl-certs/*
-ansible/roles/external/*
+
 *.log
 */*.log
+
+ansible/roles/external/*
 ansible/ansible.log
-
-*~
 ansible/inventory/*.ini
-
 ansible/playbooks/*.pem
 ansible/playbooks/*.crt
 ansible/playbooks/*.key

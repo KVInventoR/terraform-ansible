@@ -1,6 +1,4 @@
 ---
-# main.yml for software role
-
 - name: Update apt-get cache
   become: True
   apt:
@@ -30,11 +28,11 @@
     - gettext
     - bind9-host
     - traceroute
-    - elinks 
+    - elinks
     - lynx
     - elinks
     - iotop
-    - ncdu 
+    - ncdu
     - rsync
     - apt-file
     - python-pip
